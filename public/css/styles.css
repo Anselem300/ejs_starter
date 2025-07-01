@@ -28,9 +28,10 @@
 
 .account a {
   text-decoration: none;
-  font-size: .9rem;
+  font-size: .8rem;
   color: var(--color2);
   font-weight: 500;
+  margin-left: 1rem;
 }
 
 .siteName a {
