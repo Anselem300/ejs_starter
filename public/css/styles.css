@@ -1,6 +1,140 @@
 /******* Change Box Model ***************/
+:root {
+  --color: black;
+  --color2: rgb(6, 6, 14);
+  --textColor: whitesmoke;
+  --color3: rgb(104, 104, 224);
+  --backgroundColor: rgb(250, 244, 244, 0.5);
+  --displayColor: beige;
+}
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+  font-family: "Winky Sans","Tagesschrift";
+}
+
+#top-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 1rem;
+  padding-bottom: 0;
+}
+
+.account {
+  margin-left: 2rem;
+}
+
+.account a {
+  text-decoration: none;
+  font-size: .9rem;
+  color: var(--color2);
+  font-weight: 500;
+}
+
+.siteName a {
+  text-decoration: none;
+  font-size: 1.5rem;
+  color: var(--color);
+  font-weight: 600;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: .5rem;
+  background-color: var(--color);
+  margin: .1rem;
+  color: var(--textColor);
+}
+
+nav ul li {
+  list-style: none;
+}
+
+h1 {
+  font-size: 1.2rem;
+  padding-left: .5rem;
+}
+
+.image {
+  width: 100%;
+ padding: .2rem;
+ position: relative;
+ border-radius: 1rem;
+}
+
+.top-button {
+  position: absolute;
+  top: 32%;
+  left: 3%;
+  border: 1px solid var(--textColor);
+  box-shadow: 0 0 5px var(--textColor);
+  padding: .3rem;
+  width: 150px;
+  background-color: var(--backgroundColor);
+  border-radius: .6rem;
+}
+
+.top-button h2 {
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: .3rem;
+  color: var(--color3);
+}
+
+.top-button p {
+  margin: .2rem;
+}
+
+.top-button img {
+  width: 100%;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  margin-top: 0;
+  gap: .5rem;
+  margin: .4rem;
+  background-color: var(--displayColor);
+  border-radius: 1rem;
+}
+
+.information {
+  order: -1;
+  flex: 1;
+  padding-top: 0;
+}
+
+.information ul li {
+  padding: .2rem;
+}
+
+.images div{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.images div figcaption {
+  text-align: center;
+}
+
+.images div figcaption a {
+  font-size: .9rem;
+}
+
+footer {
+  background-color: var(--color);
+  padding: .5rem;
+  color: var(--textColor);
+  text-align: center;
+  margin-top: .8rem;
+  margin: .1rem;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  margin-bottom: 0;
 }

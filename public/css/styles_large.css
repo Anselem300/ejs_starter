@@ -1,0 +1,90 @@
+@media screen and (min-width: 600px) {
+    .account {
+        margin-left: 20rem;
+        font-size: 1.3rem;
+    }
+
+    .account:hover {
+        box-shadow: 0 0 5px wheat;
+        cursor: pointer;
+        padding: .3rem;
+        border-radius: 1rem;
+    }
+
+    .siteName a {
+        font-size: 2rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    nav ul li {
+        font-size: 1.2rem;
+    }
+
+    nav ul li:hover {
+        background-color: whitesmoke;
+        color: black;
+        cursor: pointer;
+    }
+
+    .top-button {
+        width: 300px;
+        height: 250px;
+        top: 50%;
+    }
+
+    .top-button h2 {
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .top-button p {
+        font-size: 1.5rem;
+        margin: .5rem;
+        text-align: center;
+    }
+
+    .top-button img {
+        width: 70%;
+        margin-left: 3rem;
+        box-shadow: 0 0 5px;
+    }
+
+    .display {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .images h3 {
+        font-size: 1.4rem;
+    }
+
+    .images div figcaption {
+        text-align: start;
+    }
+
+    .information {
+        order: 0;
+    }
+
+    .information h3 {
+        font-size: 1.4rem;
+    }
+
+    .information li {
+        margin: .5rem;
+        font-size: 1.1rem;
+    }
+
+    footer p {
+        font-size: 1.1rem;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .account {
+        margin-left: 60rem;
+    }
+}
