@@ -37,6 +37,8 @@ app.use(async (req, res, next) => {
   next({status: 404, message: 'Sorry, you must have been in the wrong direction.'})
 })
 
+app.use("/test", inventoryRoute)
+
 /* ***********************
  * Local Server Information
  * Values from .env (environment) file

@@ -60,6 +60,26 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the details view HTML
+* ************************************ */
+Util.buildDetailsGrid = function(v){
+  let details = `
+  <section class="detail-card">
+    <img src="${v.inv_image}" alt="Image of ${v.inv_make} ${v.inv_model}" loading="lazy">
+    <div class="info">
+      <h3>${v.inv_make} ${v.inv_model} Details</h3>
+      <ul class="paragraph"> 
+        <li><strong>Price: $${Number(v.inv_price).toLocaleString("en-US")}</strong></li>
+        <li><strong>Description: </strong>${v.inv_description}</li>
+        <li><strong>Color: </strong>${v.inv_color}</li>
+        <li><strong>Miles: </strong>${Number(v.inv_miles).toLocaleString("en-US")}</li>
+      </ul>
+    </div>
+  </section>`
+  return details
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

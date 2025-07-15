@@ -101,6 +101,17 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
     }
+
+    .detail-card{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 1rem;
+    }
+
+    .paragraph li {
+        margin-bottom: 2rem;
+        font-size: 1.15rem;
+    }
 }
 
 @media screen and (min-width: 800px) {
