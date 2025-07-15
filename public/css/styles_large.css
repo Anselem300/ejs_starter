@@ -81,6 +81,26 @@
     footer p {
         font-size: 1.1rem;
     }
+
+    /* #inv-display li a img {
+        width: 30%;
+        box-shadow: 0 0 5px gray;
+        border-radius: .4rem;
+    } */
+
+    #inv-display h2 {
+       font-size: 1.2rem;
+    }
+
+    /* #inv-display li {
+       box-shadow: none;
+    } */
+
+    #inv-display {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+    }
 }
 
 @media screen and (min-width: 800px) {

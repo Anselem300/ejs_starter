@@ -55,6 +55,15 @@ nav ul li {
   list-style: none;
 }
 
+nav ul li a {
+  text-decoration: none;
+  color: var(--textColor);
+}
+
+nav ul li a:hover {
+  color: var(--color);
+}
+
 h1 {
   font-size: 1.2rem;
   padding-left: .5rem;
@@ -137,5 +146,36 @@ footer {
   margin: .1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
+  margin-bottom: 0;
+}
+
+#inv-display {
+  padding: 1rem;
+  text-align: center;
+  margin-top: .1rem;
+}
+
+#inv-display li {
+  list-style: none;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 5px;
+  border-radius: 1rem;
+}
+
+#inv-display li a img {
+  width: 100%;
+}
+
+#inv-display h2 {
+  font-size: 1rem;
+  margin-bottom: .5rem;
+}
+
+#inv-display h2 a {
+  text-decoration: none;
+}
+
+.page-title {
   margin-bottom: 0;
 }
