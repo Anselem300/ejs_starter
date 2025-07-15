@@ -179,3 +179,13 @@ footer {
 .page-title {
   margin-bottom: 0;
 }
+
+.error-title {
+  text-align: center;
+  /* font-size: 1.3rem; */
+}
+
+.error-message {
+  text-align: center;
+  font-size: 1.1rem;
+}
