@@ -1,0 +1,54 @@
+<% if(title) { %>
+    <h1 class="title"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+
+<!-- Show flash notice messages -->
+<% if (typeof notice != "undefined") { %>
+  <div class="notice">
+    <%= notice %>
+  </div>
+<% } %>
+
+<!-- Show validation errors -->
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <% if (error.msg !== "Invalid value") { %>
+        <li><%= error.msg %></li>
+      <% } %>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+<main>
+    <form id="loginForm" action="/account/login" method="post" class="login-form">
+      <div class="form-group">
+        <label for="account_email">Email Address</label>
+        <input type="email" id="account_email" name="account_email" required value="<%= typeof account_email != 'undefined' ? account_email : '' %>">
+      </div>
+
+      <div class="form-group">
+        <label for="account_password">Password</label>
+          <input type="password" id="account_password" name="account_password"
+          pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+          title="Password must be at least 12 characters, include 1 uppercase letter, 1 number, and 1 special character."
+          required>
+        <label class="show-password">
+           <input type="checkbox" id="togglePassword"> Show Password
+        </label>
+        <small id="password-help" class="password-hint">
+          Password must be at least 12 characters, include 1 uppercase letter, 1 number, and 1 special character.
+        </small>
+      </div>
+
+      <button type="submit" class="login-btn">Login</button>
+    </form>
+
+    <div class="register">
+       <p>No account? <a href="/account/register">Sign up</a></p>
+    </div>
+</main>

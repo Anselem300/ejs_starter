@@ -143,7 +143,6 @@ footer {
   color: var(--textColor);
   text-align: center;
   margin-top: .8rem;
-  margin: .1rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   margin-bottom: 0;
@@ -212,4 +211,146 @@ footer {
 
 footer a {
   color: var(--textColor);
+}
+
+.login-form, .register-form, .add-form, .inventory-form {
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+  padding: 0.7rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+.login-btn, button[type="submit"] {
+  padding: 0.75rem;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover, button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.register {
+  max-width: 400px;
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.register a {
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register a:hover {
+  text-decoration: underline;
+}
+
+.show-password {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  margin-top: 0.4rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.password-hint {
+  text-align: center;
+  margin-top: .3rem;
+}
+
+.notice {
+  background-color: greenyellow;
+  padding: .5rem;
+  margin: 1rem;
+  border-radius: 3rem;
+  transition: opacity 1s ease;
+  text-align: center;
+}
+
+.notice li {
+  list-style: none;
+}
+
+.notice.fade-out {
+  opacity: 0;
+}
+
+.inventory {
+  text-align: center;
+  margin: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.inventory li {
+  list-style: none;
+  margin: 1rem;
+  background-color: #041d36;
+  padding: .5rem;
+  border-radius: 3rem;
+  font-size: 1.1rem;
+}
+
+.inventory li a {
+  text-decoration: none;
+  color: white;
+}
+
+.inventory em {
+  font-style: normal;
+  font-size: 1.7rem;
+}
+
+.add-form p {
+  margin: 0;
+}
+
+.add-form p small {
+  font-style: italic;
+  font-size: .8rem;
+}
+
+.add-form label {
+  margin-bottom: 0;
 }

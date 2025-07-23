@@ -1,0 +1,24 @@
+<h1 class="title"><%= title %></h1>
+
+<% if (typeof errors !== "undefined" && errors.array && errors.array().length > 0) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <% if (error.msg !== "Invalid value") { %>
+        <li><%= error.msg %></li>
+      <% } %>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+<main>
+    <!-- Show server-side validation errors -->
+
+  <form action="/inv/addClassification" method="post" class="add-form">
+    <label for="classification_name">Classification Name</label>
+    <p><small>No spaces or special characters allowed.</small></p>
+    <input type="text" id="classification_name" name="classification_name" pattern="^[A-Za-z0-9]+$" title="No special characters or spaces allowed"
+    required value="<%= typeof classification_name != 'undefined' ? classification_name : '' %>">
+    <button type="submit">Add Classification</buttton>
+  </form>
+</main>

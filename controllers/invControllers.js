@@ -57,4 +57,125 @@ invCont.buildByInvId = async function(req, res, next){
     }
 }
 
+invCont.buildInvManagement = async function (req, res, next) {
+    try{
+        const nav = await utilities.getNav()
+        res.render("inventory/management", {
+            title: "Vehicle Management",
+            nav,
+            notice: req.flash("notice") // ✅ shows success message after redirect
+        });
+    }
+    catch(err){
+        next(err);
+    }
+}
+
+invCont.buildAddClassification = async function(req, res, next){
+    try{
+        const nav = await utilities.getNav()
+        res.render("inventory/addClassification", {
+            title: "Add Classification",
+            nav,
+            classification_name: req.body.classification_name,
+            notice: null
+        });
+    }catch(err){
+        next(err)
+    }
+}
+
+invCont.addClassification = async function (req, res, next) {
+    try{
+        const {classification_name} = req.body
+        const insertResult = await invModel.addClassification(classification_name);
+
+        if(insertResult) {
+            const nav = await utilities.getNav(); // Regenerate nav with new classification
+            req.flash("notice", `"${classification_name}" successfully added!`)
+            res.redirect("/inv");
+        } else{
+            const nav = await utilities.getNav();
+            res.render("inventory/addClassification", {
+                title: "Add Classification",
+                nav,
+                errors,
+                notice: `Failed to add "${classification_name}". Please try again.`
+            });
+        }
+    } catch(error) {
+        next(error);
+    }
+}
+
+invCont.buildAddInventory = async function (req, res, next) {
+  try {
+    const nav = await utilities.getNav();
+    const classificationList = await utilities.buildClassificationList();
+    res.render("inventory/addInventory", {
+      title: "Add New Inventory",
+      nav,
+      classificationList,
+      errors: null,
+      notice: req.flash("notice"),
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+invCont.addInventory = async function (req, res, next) {
+  try {
+    const nav = await utilities.getNav();
+    const {
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color
+    } = req.body;
+
+    const insertResult = await invModel.addInventory({
+      classification_id,
+      inv_make,
+      inv_model,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_year,
+      inv_miles,
+      inv_color
+    });
+
+    if (insertResult) {
+      const updatedNav = await utilities.getNav();
+      req.flash("notice", `Successfully added ${inv_make} ${inv_model} to inventory.`);
+      res.render("inventory/management", {
+        title: "Vehicle Management",
+        nav: updatedNav,
+        notice: req.flash("notice")
+      });
+    } else {
+      const classificationList = await utilities.buildClassificationList(classification_id);
+      res.render("inventory/addInventory", {
+        title: "Add New Inventory",
+        nav,
+        classificationList,
+        notice: "Failed to add inventory. Please try again.",
+        errors: null,
+        ...req.body
+      });
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 module.exports = invCont

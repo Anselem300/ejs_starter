@@ -1,0 +1,47 @@
+<% if(title) { %>
+    <h1 class="title"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <% if (error.msg !== "Invalid value") { %>
+        <li><%= error.msg %></li>
+      <% } %>
+    <% }) %>
+  </ul>
+<% } %>
+
+
+<main>
+    <form action="/account/register" method="post" class="register-form">
+        <div class="form-group">
+            <label for="account_firstname">First Name</label>
+            <input type="text" id="first_name" name="account_firstname" value="<%= typeof account_firstname != 'undefined' ? account_firstname : '' %>"  required>
+        </div>
+        <div class="form-group">
+            <label for="account_lastname">Last Name</label>
+            <input type="text" id="last_name" name="account_lastname" value="<%= typeof account_lastname != 'undefined' ? account_lastname : '' %>"  required>
+        </div>
+        <div class="form-group">
+            <label for="account_email">Email</label>
+            <input type="email" id="email" name="account_email" value="<%= typeof account_email != 'undefined' ? account_email : '' %>"  required>
+        </div>
+        <div class="form-group">
+            <label for="account_password">Password</label>
+            <input type="password" id="account_password" name="account_password"
+             pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+             title="Password must be at least 12 characters, include 1 uppercase letter, 1 number, and 1 special character."
+             required>
+            <label class="show-password">
+              <input type="checkbox" id="togglePassword"> Show Password
+            </label>
+            <small id="password-help" class="password-hint">
+                Password must be at least 12 characters, include 1 uppercase letter, 1 number, and 1 special character.
+            </small>
+        </div>
+        <button type="submit">Register</button>
+    </form>
+</main>
