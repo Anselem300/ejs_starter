@@ -299,13 +299,14 @@ input:focus {
   margin-top: .3rem;
 }
 
-.notice {
+.notice, .error {
   background-color: greenyellow;
   padding: .5rem;
   margin: 1rem;
   border-radius: 3rem;
   transition: opacity 1s ease;
   text-align: center;
+  list-style: none;
 }
 
 .notice li {

@@ -5,6 +5,9 @@ const utilities = require('../utilities/index')
 const accountController = require('../controllers/accountControllers')
 const regValidate = require('../utilities/account-validation')
 
+// Default Route
+router.get('/', utilities.handleErrors(accountController.accountManagement))
+
 // Deliver Login View
 router.get('/login', utilities.handleErrors(accountController.buildLogin))
 
@@ -28,11 +31,7 @@ router.post('/register',
 router.post('/login',
   regValidate.loginRules(),
   regValidate.checkLoginData,
-  (req, res) => {
-    // Temporary response — this would be your login processing function
-    res.status(200).send('login process')
-  }
+  utilities.handleErrors(accountController.accountLogin)
 )
-
 
 module.exports = router;

@@ -17,6 +17,7 @@ const session = require('express-session');
 const pool = require('./database/');
 const accountRoute = require('./routes/accountRoute')
 const bodyParser = require('body-parser')
+const cookieParser = require("cookie-parser")
 
 /* ***********************
  * View Engines and Templates 
@@ -38,6 +39,9 @@ app.use(session({
   saveUninitialized: true,
   name: 'sessionId',
 }))
+
+// For cookie
+app.use(cookieParser())
 
 
 // Express Messages Middleware

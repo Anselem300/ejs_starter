@@ -1,4 +1,8 @@
-<h1 class="title"><%= title %></h1>
+<% if(title) { %>
+    <h1 class="title"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
 
 <% if (typeof errors !== "undefined" && errors.array && errors.array().length > 0) { %>
   <ul class="notice">

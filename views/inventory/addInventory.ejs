@@ -1,10 +1,17 @@
-<h1 class="title"><%= title %></h1>
+<% if(title) { %>
+    <h1 class="title"><%= title %></h1>
+<% } else {
+    res.redirect('/')
+} %>
 
-<% if (errors) { %>
-  <!-- display error messages -->
-<% } %>
-<% if (notice) { %>
-  <!-- display flash messages -->
+<% if (typeof errors !== "undefined" && errors.array && errors.array().length > 0) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <% if (error.msg !== "Invalid value") { %>
+        <li><%= error.msg %></li>
+      <% } %>
+    <% }) %>
+  </ul>
 <% } %>
 
 

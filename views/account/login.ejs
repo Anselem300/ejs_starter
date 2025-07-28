@@ -14,7 +14,7 @@
 
 <!-- Show validation errors -->
 <% if (errors) { %>
-  <ul class="notice">
+  <ul class="error">
     <% errors.array().forEach(error => { %>
       <% if (error.msg !== "Invalid value") { %>
         <li><%= error.msg %></li>

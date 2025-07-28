@@ -12,3 +12,11 @@ setTimeout(() => {
       setTimeout(() => notice.remove(), 1000); // Remove after fade
     }
   }, 30000); 
+
+setTimeout(() => {
+    const notice = document.querySelector('.error');
+    if (notice) {
+      notice.classList.add('fade-out');
+      setTimeout(() => notice.remove(), 1000); // Remove after fade
+    }
+  }, 30000); 

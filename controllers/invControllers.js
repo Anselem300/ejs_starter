@@ -77,8 +77,7 @@ invCont.buildAddClassification = async function(req, res, next){
         res.render("inventory/addClassification", {
             title: "Add Classification",
             nav,
-            classification_name: req.body.classification_name,
-            notice: null
+            notice: req.flash("notice")
         });
     }catch(err){
         next(err)
