@@ -35,4 +35,51 @@ const checkInventoryData = async (req, res, next) => {
   next();
 };
 
-module.exports = { inventoryRules, checkInventoryData };
+// Check update data: if errors exist, redirect back to the edit view
+const checkUpdateData = async (req, res, next) => {
+  const errors = validationResult(req);
+  const nav = await utilities.getNav();
+  const classificationList = await utilities.buildClassificationList(req.body.classification_id);
+
+  // Pull all fields from req.body, including inv_id
+  const {
+    inv_id,
+    classification_id,
+    inv_make,
+    inv_model,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_year,
+    inv_miles,
+    inv_color
+  } = req.body
+
+  if (!errors.isEmpty()) {
+    const itemName = `${inv_make} ${inv_model}`;
+    return res.render("inventory/edit-inventory", {
+      title: "Edit " + itemName,
+      nav,
+      classificationList,
+      errors,
+      notice: null,
+      inv_id: inv_id,
+      classification_id: classification_id,
+      inv_make: inv_make,
+      inv_model: inv_model,
+      inv_description: inv_description,
+      inv_image: inv_image,
+      inv_thumbnail: inv_thumbnail,
+      inv_price: inv_price,
+      inv_year: inv_year,
+      inv_miles: inv_miles,
+      inv_color: inv_color
+    });
+  }
+
+  next();
+};
+
+
+module.exports = { inventoryRules, checkInventoryData, checkUpdateData };

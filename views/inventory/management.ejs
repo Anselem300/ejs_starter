@@ -1,6 +1,5 @@
 <h1 class="title"><%= title %></h1>
 
-<main>
     <% if (notice && notice.length > 0) { %>
   <div class="notice"><%= notice %></div>
    <% } %>
@@ -9,4 +8,11 @@
         <li><a href="/inv/addClassification"><em>+</em>Add New Classification</a></li>
         <li><a href="/inv/addInventory"><em>+</em>Add Inventory</a></li>
     </ul>
-</main>
+
+    <h2 class="manage">Manage Inventory</h2>
+    <p class="choose">Choose a classification to see those inventory items</p>
+    <%- classificationSelect %>
+    <table id="inventoryDisplay"></table>
+    <noscript>JavaScript must be enabled to use this page.</noscript>
+
+    <script src="../../js/inventory.js"></script>

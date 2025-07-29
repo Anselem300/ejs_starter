@@ -112,6 +112,10 @@
         margin-bottom: 2rem;
         font-size: 1.15rem;
     }
+
+    .manage {
+        margin: 1rem 6rem;
+    }
 }
 
 @media screen and (min-width: 800px) {

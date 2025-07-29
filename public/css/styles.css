@@ -238,7 +238,7 @@ label {
 
 input[type="email"],
 input[type="password"],
-input[type="text"] {
+input[type="text"], input[type="number"], textarea{
   padding: 0.7rem;
   border: 1px solid #ccc;
   border-radius: 6px;
@@ -354,4 +354,122 @@ input:focus {
 
 .add-form label {
   margin-bottom: 0;
+}
+
+.manage {
+  text-align: center;
+  margin-top: 0;
+  font-size: 1.1rem;
+  border-bottom: 1px solid black;
+  margin: 1rem;
+  padding-bottom: .5rem;
+}
+
+.choose {
+  text-align: center;
+}
+
+#classificationList {
+  display: block;
+  margin: 0 auto;
+  padding: .2rem .5rem;
+  border-radius: .5rem;
+}
+
+/* Container table styling */
+#inventoryDisplay {
+  width: 100%;
+  max-width: 900px;
+  margin: 2rem auto;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header row */
+#inventoryDisplay thead {
+  background: #2c3e50;
+  color: white;
+}
+
+#inventoryDisplay th {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 1rem;
+}
+
+/* Table body rows */
+#inventoryDisplay td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+/* Zebra striping for rows */
+#inventoryDisplay tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* Hover effect */
+#inventoryDisplay tbody tr:hover {
+  background: #eef6ff;
+}
+
+/* Links (Modify / Delete) */
+#inventoryDisplay a {
+  display: inline-block;
+  padding: 6px 10px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+/* Modify button look */
+#inventoryDisplay a[href*="/edit/"] {
+  background: #3498db;
+  color: white;
+}
+
+#inventoryDisplay a[href*="/edit/"]:hover {
+  background: #217dbb;
+}
+
+/* Delete button look */
+#inventoryDisplay a[href*="/delete/"] {
+  background: #e74c3c;
+  color: white;
+}
+
+#inventoryDisplay a[href*="/delete/"]:hover {
+  background: #c0392b;
+}
+
+.currency-input {
+  position: relative;
+  display: inline-block;
+  
+}
+
+.currency-input::before {
+  content: "$";
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: bold;
+}
+
+.currency-input input {
+  padding-left: 20px; /* add space for $ */
+}
+
+.price-input {
+  width: 340px;
+  padding: 6px;
+  font-size: 1rem;
+}
+
+.add-form {
+  margin-bottom: 6rem;
 }

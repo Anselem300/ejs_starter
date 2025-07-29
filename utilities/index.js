@@ -1,5 +1,7 @@
 const invModel = require("../models/inventory-models");
 const Util = {};
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
 
 /* ************************
  * Constructs the nav HTML unordered list
@@ -81,22 +83,66 @@ Util.buildDetailsGrid = function(v){
 }
 
 Util.buildClassificationList = async function (selected_id = null) {
-  let data = await invModel.getClassifications();
-  let classificationList =
-    '<select name="classification_id" id="classificationList" required>';
-  classificationList += "<option value=''>Choose a Classification</option>";
+  try {
+    let data = await invModel.getClassifications();
+    console.log("Classifications fetched:", data.rows);
 
-  data.rows.forEach((row) => {
-    classificationList += `<option value="${row.classification_id}"`;
-    if (selected_id && row.classification_id == selected_id) {
-      classificationList += " selected";
-    }
-    classificationList += `>${row.classification_name}</option>`;
-  });
+    let classificationList =
+      '<select name="classification_id" id="classificationList" required>';
+    classificationList += "<option value=''>Choose a Classification</option>";
 
-  classificationList += "</select>";
-  return classificationList;
+    data.rows.forEach((row) => {
+      classificationList += `<option value="${row.classification_id}"`;
+      if (selected_id && row.classification_id === selected_id) {
+        classificationList += " selected";
+      }
+      classificationList += `>${row.classification_name}</option>`;
+    });
+
+    classificationList += "</select>";
+    return classificationList;
+  } catch (err) {
+    console.error("Error building classification list:", err.message);
+    return "<select><option value=''>Error loading classifications</option></select>";
+  }
 };
+
+
+/* ****************************************
+* Middleware to check token validity
+**************************************** */
+Util.checkJWTToken = (req, res, next) => {
+  if(req.cookies.jwt) {
+    jwt.verify(
+      req.cookies.jwt,
+      process.env.ACCESS_TOKEN_SECRET,
+      function (err, accountData) {
+        if(err){
+          req.flash("Please log in")
+          res.clearCookie("jwt")
+          return redirect("/account/login")
+        }
+        res.locals.accountData = accountData
+        res.locals.loggedIn = 1
+        next()
+      }
+    )
+  } else {
+    next()
+  }
+}
+
+/* ****************************************
+ *  Check Login
+ * ************************************ */
+ Util.checkLogin = (req, res, next) => {
+  if (res.locals.loggedIn) {
+    next()
+  } else {
+    req.flash("notice", "Please log in.")
+    return res.redirect("/account/login")
+  }
+ }
 
 /* ****************************************
  * Middleware For Handling Errors
