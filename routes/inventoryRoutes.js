@@ -31,6 +31,9 @@ router.get("/getInventory/:classification_id", utilities.handleErrors(invControl
 // Route to editInventory
 router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventory))
 
+// Route to deleteInventory
+router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteView))
+
 // Route for AddInventory
 router.get("/addInventory", invController.buildAddInventory)
 
@@ -38,6 +41,11 @@ router.get("/addInventory", invController.buildAddInventory)
 router.post("/update/", inventoryRules(),
   checkUpdateData,
   utilities.handleErrors(invController.updateInventory))
+
+// Router for delete 
+router.post("/delete/", 
+   utilities.handleErrors(invController.deleteInventory)
+)
 
 router.post("/addInventory", inventoryRules(),
     checkInventoryData,

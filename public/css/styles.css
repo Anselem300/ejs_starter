@@ -473,3 +473,11 @@ input:focus {
 .add-form {
   margin-bottom: 6rem;
 }
+
+.delete {
+  text-align: center;
+  background-color: #c0392b;
+  padding: .7rem;
+  color: white;
+  box-shadow: 0 0 6px red;
+}
