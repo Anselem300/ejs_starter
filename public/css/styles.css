@@ -213,7 +213,7 @@ footer a {
   color: var(--textColor);
 }
 
-.login-form, .register-form, .add-form, .inventory-form {
+.login-form, .register-form, .add-form, .inventory-form, .update-account, .change-password {
   max-width: 400px;
   margin: 2rem auto;
   padding: 2rem;
@@ -480,4 +480,106 @@ input:focus {
   padding: .7rem;
   color: white;
   box-shadow: 0 0 6px red;
+}
+
+/* Layout Containers */
+.account-dashboard{
+  text-align: center;
+}
+
+.account-dashboard,
+.account-login-prompt {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Text Styling */
+.account-dashboard h2,
+.account-login-prompt h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.account-dashboard h2 span {
+  color: #0077cc;
+}
+
+.account-dashboard .intro {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.management-section {
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.management-section h3 {
+  font-size: 1.4rem;
+  color: #444;
+  margin-bottom: 0.75rem;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Button Variants */
+.btn.primary {
+  background: #0077cc;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #005fa3;
+}
+
+.btn.secondary {
+  background: #28a745;
+  color: #fff;
+}
+
+.btn.secondary:hover {
+  background: #1f7a33;
+}
+
+.btn.danger {
+  background: #e63946;
+  color: #fff;
+}
+
+.btn.danger:hover {
+  background: #c72c37;
+}
+
+.password h2 {
+  text-align: center;
+  font-size: 1.2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgb(226, 213, 194);
+  margin: 1rem .5rem;
+}
+
+.password p {
+  text-align: center;
+  padding: .5rem;
+  font-size: .8rem;
 }

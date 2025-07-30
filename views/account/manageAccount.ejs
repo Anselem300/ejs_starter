@@ -4,7 +4,39 @@
     res.redirect('/')
 } %>
 
+<% if (notice && notice.length > 0) { %>
+    <div class="notice">
+      <% notice.forEach(msg => { %>
+        <p><%= msg %></p>
+      <% }) %>
+    </div>
+  <% } %>
 
-<main>
-    <p>You're logged in!</p>
-</main>
+<% if (accountData) { %>
+  <section class="account-dashboard">
+    <h2>
+      Welcome <span><%= accountData.account_firstname %> <%= accountData.account_lastname %></span>
+    </h2>
+    <p class="intro">Manage your account and access tools below.</p>
+
+    <div class="account-actions">
+      <a href="/account/updateAccount/<%= accountData.account_id %>" class="btn primary">
+        Update Your Account Information
+      </a>
+
+      <% if (accountData.account_type === "Employee" || accountData.account_type === "Admin") { %>
+        <div class="management-section">
+          <h3>Inventory Management</h3>
+          <a href="/inv/" class="btn secondary">
+            Go to Inventory Management
+          </a>
+        </div>
+      <% } %>
+    </div>
+  </section>
+<% } else { %>
+  <section class="account-login-prompt">
+    <h2>Please log in to view your account management page.</h2>
+    <a href="/account/login" class="btn danger">Go to Login</a>
+  </section>
+<% } %>

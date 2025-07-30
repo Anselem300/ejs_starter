@@ -52,11 +52,6 @@ async function registerAccount(req, res) {
         req.flash("notice", `Congratulations, you\'re registered ${account_firstname}! Please log in.`);
         res.status(201).redirect("/account/login");
 
-        // res.status(201).render('account/login', {
-        //     title: "Login",
-        //     nav,
-        //     errors: { errors: [] } // pass empty errors object
-        // });
     } catch (error) {
         console.error("Registration error:", error.message);
         req.flash("notice", "Sorry, the registration failed.");
@@ -118,12 +113,77 @@ async function accountLogin(req, res) {
 }
 
 async function accountManagement(req, res) {
+  // accountData was set in JWT middleware
+  const accountData = res.locals.accountData
     let nav = await utilities.getNav()
     res.render('account/manageAccount', {
         title: "Manage Your Account",
         nav,
+        accountData,
         notice: req.flash("notice")
     })
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountManagement }
+async function buildUpdateAccount(req, res) {
+  const nav = await utilities.getNav();
+  const account_id = req.params.account_id
+
+  // Get the account info from the DB
+  const accountData = await accountModel.getAccountById(account_id);
+  res.render("account/updateAccount", {
+    title: "Update Your Account Information",
+    nav,
+    accountData,
+    errors: null,
+    notice: req.flash("notice")
+  })
+}
+
+async function updateAccount(req, res) {
+  try{
+    const account_id = req.params.account_id;
+    const { account_firstname, account_lastname, account_email } = req.body;
+
+    const updateResult = await accountModel.updateAccount(account_id, {
+      account_firstname,
+      account_lastname, 
+      account_email
+    });
+    if (updateResult) {
+      req.flash("notice", "Your account information has been updated.");
+      res.redirect("/account/");
+    } else {
+      req.flash("notice", "Sorry, update failed. Please try again.")
+      res.redirect(`/account/updateAccount/${account_id}`);
+    }
+  } catch (error) {
+    req.flash("notice", "An error occurred. Please try again.")
+    res.redirect(`/account/updateAccount/${req.params.account_id}`);
+  }
+}
+
+// Change Password Controller
+async function newPassword(req, res) {
+  try {
+    const { account_id } = req.params;
+    const { account_password } = req.body
+
+    // Hash new password
+    const hashedNewPassword = await bcrypt.hash(account_password, 10)
+    const updateResult =  await accountModel.updatePassword(account_id, hashedNewPassword)
+
+    if (updateResult) {
+      req.flash("notice", "Password successfully updated!")
+      return res.redirect("/account/")
+    } else {
+      req.flash("notice", "Password update failed. Please try again.")
+      return res.redirect(`/account/updateAccount/${account_id}`)
+    }
+  } catch (error) {
+    console.error("Password update error: ", error)
+    req.flash("notice", "An error occurred. Please try again.")
+    res.redirect(`/account/updateAccount/${req.params.account_id}`)
+  }
+}
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, accountManagement, buildUpdateAccount, updateAccount, newPassword }

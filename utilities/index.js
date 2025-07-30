@@ -133,6 +133,25 @@ Util.checkJWTToken = (req, res, next) => {
 }
 
 /* ****************************************
+* Middleware to check account type
+**************************************** */
+Util.checkEmployeeOrAdmin = (req, res, next) => {
+  // Make sure JWT is already verified by checkJWTToken
+  if(res.locals.accountData) {
+    const { account_type } = res.locals.accountData;
+    if (account_type === "Employee" || account_type === "Admin") {
+      return next(); // ✅ authorized
+    } else {
+    req.flash("notice", "Sorry, but your access to this view is restricted.");
+    res.redirect("/");
+  }
+  } else {
+    req.flash("notice", "Please log in to continue.")
+    res.redirect("account/login");
+  }
+}
+
+/* ****************************************
  *  Check Login
  * ************************************ */
  Util.checkLogin = (req, res, next) => {

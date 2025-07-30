@@ -116,6 +116,15 @@
     .manage {
         margin: 1rem 6rem;
     }
+
+    .password p {
+        font-size: 1rem;
+    }
+
+    .password h2 {
+        margin-left: 6rem;
+        margin-right: 6rem;
+    }
 }
 
 @media screen and (min-width: 800px) {
