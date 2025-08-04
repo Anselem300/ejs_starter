@@ -19,6 +19,18 @@
     </h2>
     <p class="intro">Manage your account and access tools below.</p>
 
+    <!-- Account Information Display Section For Enhancement Project -->
+     <div class="account-info">
+      <h4>Your Account Information</h4>
+      <ul>
+        <li><strong>First Name: </strong><%= accountData.account_firstname %></li>
+        <li><strong>Last Name: </strong><%= accountData.account_lastname %></li>
+        <li><strong>Email: </strong><%= accountData.account_email %></li>
+        <li><strong>Account_ID: </strong><%= accountData.account_id %></li>
+        <li><strong>Account Type: </strong><%= accountData.account_type %></li>
+      </ul>
+     </div>
+    <!-- Account Update Section -->
     <div class="account-actions">
       <a href="/account/updateAccount/<%= accountData.account_id %>" class="btn primary">
         Update Your Account Information
